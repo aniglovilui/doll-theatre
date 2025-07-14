@@ -1,0 +1,1363 @@
+{  
+    "scenario_name": "Счастье в шкатулке",
+    "movie_sizes": [1280, 720],
+    "main_font": {
+        "font_name": "Cormorant-Medium.ttf",
+        "font_size": 36,
+        "font_color": "#ffffff",
+        "stroke_color": "#170c1c", 
+        "stroke_width": 2
+    },
+    "accent_font": {
+        "font_name": "Cormorant-Medium.ttf",
+        "font_size": 36,
+        "font_color": "#ebc354",
+        "stroke_color": "#1a100b", 
+        "stroke_width": 2
+    },
+    "scenes": [
+        {
+            "index": 1,
+            "description": "Княжна стоит посреди богато убранной комнаты, расставив руки в стороны, одетая в расшитое платье, во всевозможных украшениях, с кокошником на голове. Вокруг нее с обоих сторон служанки.",
+            "duration": 7.0,
+            "background": "palace_hall_1.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "В далекой стране жила невероятной красоты княжна.",
+                    "appearing_time": 0.01,
+                    "time": 1.7
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "У княжны было все, о чем только можно мечтать: шелком расшитые одежды, украшения из филигранного золота и драгоценных каменьев.",
+                    "time": 5.3
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_1.png",
+                    "z-index": 1,
+                    "scale": 1.1,
+                    "rotation_angle": 0,
+                    "coordinates": [0.51, 0.13],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_first.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.69, 0.32],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [-2, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_second.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.33, 0.24],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [3, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_third.png",
+                    "z-index": 2,
+                    "scale": 0.95,
+                    "rotation_angle": 0,
+                    "coordinates": [0.09, 0.32],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [2, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "little_box.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.29, 0.43],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [2, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "beads_opened.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.5, 0.42],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [3, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "scarf_2.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.69, 0.5],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [-2, 0]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 2,
+            "description": "Княжна плачет, служанки пытаются ее успокоить.",
+            "duration": 9.8,
+            "background": "palace_hall_1.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Однако, каждый раз, как княжна видела что-то, что цепляло ее интерес, она не могла спокойно спать, пока этого не получит.",
+                    "time": 4.2
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Я теперь совершенно несчастна!",
+                    "time": 2.5
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Но все желания княжны непременно исполнялись и в княжестве царило спокойствие.",
+                    "time": 3.1
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_2.png",
+                    "z-index": 1,
+                    "scale": 1.7,
+                    "rotation_angle": 0,
+                    "coordinates": [0.33, 0.03],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_first.png",
+                    "z-index": 2,
+                    "scale": 1.7,
+                    "rotation_angle": 0,
+                    "coordinates": [0.61, 0.33],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 8.3,
+                        "params": {
+                            "speed": [-2, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_second.png",
+                    "z-index": 2,
+                    "scale": 1.7,
+                    "rotation_angle": 0,
+                    "coordinates": [-0.02, 0.22],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 8.3,
+                        "params": {
+                            "speed": [2, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "tears.png",
+                    "z-index": 3,
+                    "scale": 0.9,
+                    "rotation_angle": 0,
+                    "coordinates": [0.47, 0.15],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 3.2,
+                        "motion_time": 4.1,
+                        "params": {
+                            "speed": [0, 10]
+                        }
+                    },
+                    "effect": [
+                        {
+                        "effect_type": "appearance",
+                        "effect_appearance_time": 3.2,
+                        "effect_duration": 1.0
+                        },
+                        {
+                        "effect_type": "disappearance",
+                        "effect_appearance_time": 6.3,
+                        "effect_duration": 1.0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "index": 3,
+            "description": "Царевич и княжна стоят в саду рядом, чуть сближаясь, царевич в профиль, княжна в анфас. Княжна улыбается.",
+            "duration": 6.2,
+            "background": "garden.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Иногда во дворец приезжал молодой царевич из соседнего государства.",
+                    "time": 2.2
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Царевич был без памяти влюблен в прекрасную княжну. Когда княжна хлопала в ладоши и звонко смеялась, его сердце трепетало.",
+                    "time": 4.0
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_2.png",
+                    "z-index": 2,
+                    "scale": 1.07,
+                    "rotation_angle": 0,
+                    "coordinates": [0.54, 0.13],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 4.0,
+                        "params": {
+                            "speed": [-7, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_2.png",
+                    "z-index": 1,
+                    "scale": 1.07,
+                    "rotation_angle": 0,
+                    "coordinates": [0.27, 0.05],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 4.0,
+                        "params": {
+                            "speed": [11, 0]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 4,
+            "description": "Царевич и княжна стоят на балконе. В саду на ветке куста сидит маленькая птичка.",
+            "duration": 8.2,
+            "background": "balcony.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Однажды в дворцовом саду по утрам стала петь птица, пение ее было ласково и переливисто, словно весенний ручеек.",
+                    "time": 3.6
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Эта птица поет так чудесно. Поймай ее для меня!",
+                    "time": 2.2
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "После этого княжна перестала улыбаться и даже щеки ее побледнели.",
+                    "time": 2.4
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_1.png",
+                    "z-index": 1,
+                    "scale": 0.87,
+                    "rotation_angle": 0,
+                    "coordinates": [0.62, 0.22],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_3.png",
+                    "z-index": 2,
+                    "scale": 0.9,
+                    "rotation_angle": 0,
+                    "coordinates": [0.76, 0.3],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "bird.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.23, 0.65],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "music_2.png",
+                    "z-index": 2,
+                    "scale": 0.9,
+                    "rotation_angle": 0,
+                    "coordinates": [0.3, 0.54],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [0, -3]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "description": "Богато убранная комната, царевич преподносит княжне золотую клетку.",
+            "duration": 12.1,
+            "background": "palace_hall_2.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Царевич не мог вынести страданий возлюбленной.",
+                    "time": 1.9
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "На следующий день он принес княжне золотую клетку, в которой сидела маленькая птичка. Царевич нашел ее в саду, высиживающей яйца в гнездышке.",
+                    "time": 5.3
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Ах, как замечательно!",
+                    "time": 1.4
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Княжна снова повеселела, а царевич не мог на нее налюбоваться.",
+                    "time": 3.5
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_3.png",
+                    "z-index": 2,
+                    "scale": 1.4,
+                    "rotation_angle": 0,
+                    "coordinates": [0.59, 0.1],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 7.2,
+                        "motion_time": 1.4,
+                        "params": {
+                            "speed": [-6, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_2.png",
+                    "z-index": 1,
+                    "scale": 1.4,
+                    "rotation_angle": 0,
+                    "coordinates": [0.15, 0.05],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 7.2,
+                        "params": {
+                            "speed": [5, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "bird.png",
+                    "z-index": 4,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.45, 0.58],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 7.2,
+                        "params": {
+                            "speed": [5, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "cage.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.45, 0.41],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 7.2,
+                        "params": {
+                            "speed": [5, 0]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 6,
+            "description": "Снова одна из комнат дворца, княжна стоит, чуть возвышаясь над царевичем, царевич держит кинжал у волос.",
+            "duration": 13.7,
+            "background": "palace_hall_2.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Когда царевич приехал в следующий раз, княжна снова была безутешна.",
+                    "time": 2.3
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Золото в моих украшениях слишком грубое! Срежь для меня свои золотистые волосы, и прикажи расшить ими мое платье.",
+                    "time": 4.0
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Царевич очень дорожил своими волосами. Последний раз он провел ладонью по светлым кудрям и, затаив дыхание, срезал у затылка кинжалом.",
+                    "time": 4.6
+                },
+                {
+                    "character": "Царевич",
+                    "text": "Я буду счастлив, только если княжна счастлива!",
+                    "time": 2.8
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_2.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.26, 0.07],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_3.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.48, 0.1],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "maid_first.png",
+                    "z-index": 2,
+                    "scale": 0.93,
+                    "rotation_angle": 0,
+                    "coordinates": [0.7, 0.35],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 8.0,
+                        "motion_time": 4.0,
+                        "params": {
+                            "speed": [-8, 0]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "dagger_2.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 137,
+                    "coordinates": [0.57, 0.2],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 7.7,
+                            "effect_duration": 0.6
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "golden_hair.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.61, 0.21],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "parabolic",
+                        "starting_time": 8.3,
+                        "params": {
+                            "speed": [5, 0],
+                            "acceleration": [0, 8],
+                            "angle_speed": -10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 7,
+            "description": "Княжна сидит на кровати и плачет, обеспокоенный царевич стоит радом.",
+            "duration": 5.7,
+            "background": "throne_hall_1.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Но вскоре княжна снова стала тихой и понурой.",
+                    "time": 2.4
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Милый царевич, только тогда я буду счастлива, если ты достанешь для меня с неба солнце!",
+                    "time": 3.4
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_4.png",
+                    "z-index": 2,
+                    "scale": 1.1,
+                    "rotation_angle": 0,
+                    "coordinates": [0.19, 0.23],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_3.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.58, 0.11],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.54, 0.01],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "params": {
+                            "angle_speed": 10
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "tears.png",
+                    "z-index": 3,
+                    "scale": 0.6,
+                    "rotation_angle": 0,
+                    "coordinates": [0.27, 0.33],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [0, 5]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 8,
+            "description": "Царевич в смятении. Шут в поклоне протягивает ему шкатулку.",
+            "duration": 7.8,
+            "background": "palace_hall_2.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Царевич был в отчаянии. Разве возможно — достать с неба солнце?",
+                    "time": 3.0
+                },
+                {
+                    "character": "Шут",
+                    "text": "Не горюйте, господин!",
+                    "time": 1.7
+                },
+                {
+                    "character": "Шут",
+                    "text": "Решение вашей беды простое! Поезжайте на самый высокий утес и поймайте солнце в шкатулку!",
+                    "time": 4.1
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_4.png",
+                    "z-index": 1,
+                    "scale": 1.06,
+                    "rotation_angle": 0,
+                    "coordinates": [0.62, 0.15],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 3.5,
+                        "params": {
+                            "speed": [-5, -2]
+                        }
+                    }
+                },
+                {
+                    "category": "characters",
+                    "image_name": "jester_2.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.17, 0.23],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 3.0,
+                        "params": {
+                            "speed": [7, 0]
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 3.0,
+                            "effect_duration": 0.8
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "emerald_box.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.42, 0.35],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 3.0,
+                        "params": {
+                            "speed": [0, 0],
+                            "acceleration": [2, 0]
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 3.0,
+                            "effect_duration": 0.8
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "index": 9,
+            "description": "Царевич стоит на краю утеса и протягивает руки со шкатулкой к солнцу.",
+            "duration": 9.7,
+            "background": "cliff.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Не прошло и трех дней, царевич оказался на вершине утеса. Когда день сменялся ночью, он протянул к солнцу руки и поймал в открытую шкатулку.",
+                    "time": 6.3
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Но, смотря на солнце так близко, совершенно ослеп.",
+                    "time": 3.4
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_4.png",
+                    "z-index": 2,
+                    "scale": 0.57,
+                    "rotation_angle": 0,
+                    "coordinates": [0.61, 0.3],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 6.3,
+                        "params": {
+                            "speed": [-6, -2]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "emerald_box_opened.png",
+                    "z-index": 3,
+                    "scale": 0.55,
+                    "rotation_angle": 0,
+                    "coordinates": [0.6, 0.28],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "motion_time": 6.3,
+                        "params": {
+                            "speed": [-6, -2]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.52, 0.2],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "motion_time": 6.3,
+                        "params": {
+                            "speed": [7, 6],
+                            "angle_speed": 10
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.31, -0.18],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "motion_time": 6.3,
+                        "params": {
+                            "speed": [6, 5],
+                            "angle_speed": -10
+                        }
+                    }
+                }
+            ],
+            "scene_effect": [
+                {
+                    "effect_type": "scene_fade_out",
+                    "effect_appearance_time": 5.3,
+                    "effect_duration": 1.0,
+                    "fade_color": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "index": 10,
+            "description": "Княжна сидит на резном троне, держит шкатулку, царевич стоит рядом.",
+            "duration": 19.4,
+            "background": "throne_hall_night.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Когда княжна заглянула сквозь изумрудные стенки, она не смогла сдержать восхищенный вздох.",
+                    "time": 3.0
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Солнце было прекраснее всего, что княжна видела в своей жизни. А царевич был счастлив слышать ее звонкий веселый голос.",
+                    "time": 5.1
+                },
+                {
+                    "character": "Княжна",
+                    "text": "Только посмотри, как замечательно переливается солнце!",
+                    "time": 2.4
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Но оказалось, что слепой царевич больше не может по достоинству оценить красоту княжны и ее чудесных богатств.",
+                    "time": 4.4
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Капризная княжна выгнала царевича из дворца, а сама стала проводить дни и ночи над изумрудной шкатулкой, не выпуская ее из рук.",
+                    "time": 5.0
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_3.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.5, 0.11],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 16.0,
+                        "params": {
+                            "speed": [9, 0]
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 16.0,
+                            "effect_duration": 1.5
+                        }
+                    ]
+
+                },
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_4.png",
+                    "z-index": 1,
+                    "scale": 1.1,
+                    "rotation_angle": 0,
+                    "coordinates": [0.19, 0.23],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "emerald_box_radiant.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.25, 0.56],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 2,
+                    "scale": 0.3,
+                    "rotation_angle": 0,
+                    "coordinates": [0.21, 0.45],
+                    "reflection": false,
+                    "opacity": 0.7,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "description": "Княжна сидит на резном троне, держит в руках солнце.",
+            "duration": 10.1,
+            "background": "throne_hall_night.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "Так прошло несколько дней. Княжне стало недостаточно смотреть на солнце через изумрудные стенки.",
+                    "time": 3.5
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Она открыла ларец и взяла солнце в ладони, да так и сгорела.",
+                    "time": 3.2
+                },
+                {
+                    "character": "Рассказчик",
+                    "text": "Шут поднял солнце шелковым платочком и забросил обратно на небо.",
+                    "time": 3.4
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "knyajna_4.png",
+                    "z-index": 1,
+                    "scale": 1.1,
+                    "rotation_angle": 0,
+                    "coordinates": [0.19, 0.23],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 5.2,
+                            "effect_duration": 0.5
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "emerald_box_radiant.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.25, 0.56],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 3.5,
+                            "effect_duration": 1.0
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 2,
+                    "scale": 0.3,
+                    "rotation_angle": 0,
+                    "coordinates": [0.21, 0.45],
+                    "reflection": false,
+                    "opacity": 0.7,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 3.5,
+                            "effect_duration": 1.0
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 2,
+                    "scale": 0.3,
+                    "rotation_angle": 0,
+                    "coordinates": [0.21, 0.36],
+                    "reflection": false,
+                    "opacity": 0.7,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 3.5,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 3.5,
+                            "effect_duration": 1.0
+                        },
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 5.2,
+                            "effect_duration": 0.5
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun.png",
+                    "z-index": 4,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.25, 0.43],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 3.5,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 3.5,
+                            "effect_duration": 1.0
+                        },
+                        {
+                            "effect_type": "disappearance",
+                            "effect_appearance_time": 5.2,
+                            "effect_duration": 0.5
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 2,
+                    "scale": 0.3,
+                    "rotation_angle": 0,
+                    "coordinates": [0.39, 0.75],
+                    "reflection": false,
+                    "opacity": 0.7,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 3.5,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 5.7,
+                            "effect_duration": 0.5
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun.png",
+                    "z-index": 4,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.43, 0.82],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 3.5,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 5.7,
+                            "effect_duration": 0.5
+                        }
+                    ]
+                },
+                {
+                    "category": "characters",
+                    "image_name": "jester_2.png",
+                    "z-index": 1,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.48, 0.35],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 6.3,
+                        "params": {
+                            "speed": [-7, 0]
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 6.7,
+                            "effect_duration": 1.0
+                        }
+                    ]
+                },
+                {
+                    "category": "props",
+                    "image_name": "handkerchief.png",
+                    "z-index": 2,
+                    "scale": 0.9,
+                    "rotation_angle": 0,
+                    "coordinates": [0.47, 0.51],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 6.6,
+                        "params": {
+                            "speed": [-7, 0]
+                        }
+                    },
+                    "effect": [
+                        {
+                            "effect_type": "appearance",
+                            "effect_appearance_time": 6.7,
+                            "effect_duration": 1.0
+                        }
+                    ]
+                }
+            ],
+            "scene_effect": [
+                {
+                    "effect_type": "scene_flash",
+                    "effect_appearance_time": 5.2,
+                    "effect_duration": 1.0,
+                    "fade_color": [245, 142, 17]
+                },
+                {
+                    "effect_type": "scene_fade_out",
+                    "in_the_end": true,
+                    "effect_duration": 0.5,
+                    "fade_color": [255, 249, 215]
+                }
+            ]
+        },
+        {
+            "index": 12,
+            "description": "Лес, царевич слепыми глазами смотрит в небо.",
+            "duration": 8.0,
+            "background": "garden.png",
+            "lines": [
+                {
+                    "character": "Рассказчик",
+                    "text": "А царевич, безутешно бродивший в темноте и тишине, впервые за эти дни почувствовал тепло и услышал птиц, запевших снова.",
+                    "time": 4.7
+                },
+                {
+                    "character": "Царевич",
+                    "text": "Так вот… что такое счастье…",
+                    "time": 3.28
+                }
+            ],
+            "composition": [
+                {
+                    "category": "characters",
+                    "image_name": "tsarevitch_4.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.25, 0.23],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.63, 0.08],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "params": {
+                            "angle_speed": 10
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "sun_halo.png",
+                    "z-index": 1,
+                    "scale": 0.5,
+                    "rotation_angle": 0,
+                    "coordinates": [0.54, -0.08],
+                    "reflection": false,
+                    "opacity": 0.7,
+                    "motion": {
+                        "motion_type": "rotation",
+                        "starting_time": 0.0,
+                        "params": {
+                            "angle_speed": -10
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "bird.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.88, 0.1],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "bird_2.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.12, 0.17],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "bird_2.png",
+                    "z-index": 2,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.71, 0.5],
+                    "reflection": true,
+                    "motion": {
+                        "motion_type": "none"
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "music_2.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.7, 0.38],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [0, -4]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "music_2.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.18, 0.05],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [0, -4]
+                        }
+                    }
+                },
+                {
+                    "category": "props",
+                    "image_name": "music_2.png",
+                    "z-index": 3,
+                    "scale": 1.0,
+                    "rotation_angle": 0,
+                    "coordinates": [0.86, -0.03],
+                    "reflection": false,
+                    "motion": {
+                        "motion_type": "linear",
+                        "starting_time": 0.0,
+                        "params": {
+                            "speed": [0, -3]
+                        }
+                    }
+                }
+            ],
+            "scene_effect": [
+                {
+                    "effect_type": "scene_fade_in",
+                    "effect_appearance_time": 0.0,
+                    "effect_duration": 1.0,
+                    "fade_color": [255, 249, 215]
+                },
+                {
+                    "effect_type": "scene_fade_out",
+                    "in_the_end": true,
+                    "effect_duration": 1.0,
+                    "fade_color": [255, 249, 215]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,171 @@
+{
+  "scenario_name": "test_scenario",
+  "movie_sizes": [1280, 720],
+  "main_font": {
+    "font_name": "Cormorant/static/Cormorant-Medium.ttf",
+    "font_size": 36,
+    "font_color": "#ffffff",
+    "stroke_color": "#170c1c",
+    "stroke_width": 2
+  },
+  "accent_font": {
+    "font_name": "Cormorant/static/Cormorant-Medium.ttf",
+    "font_size": 36,
+    "font_color": "#ebc354",
+    "stroke_color": "#1a100b",
+    "stroke_width": 2
+  },
+  "scenes": [
+    {
+      "index": 12,
+      "description": "Лес, царевич слепыми глазами смотрит в небо.",
+      "duration": 8.0,
+      "background": "garden.png",
+      "composition": [
+        {
+          "category": "characters",
+          "image_name": "tsarevitch_4.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.25, 0.23],
+          "reflection": false,
+          "motion": {
+            "motion_type": "none"
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "sun.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.63, 0.08],
+          "reflection": false,
+          "motion": {
+            "motion_type": "rotation",
+            "starting_time": 0.0,
+            "params": {
+              "angle_speed": 10
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "sun_halo.png",
+          "z-index": 1,
+          "scale": 0.5,
+          "rotation_angle": 0,
+          "coordinates": [0.54, -0.08],
+          "reflection": false,
+          "opacity": 0.7,
+          "motion": {
+            "motion_type": "rotation",
+            "starting_time": 0.0,
+            "params": {
+              "angle_speed": -10
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "bird.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.88, 0.1],
+          "reflection": true,
+          "motion": {
+            "motion_type": "none"
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "bird_2.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.12, 0.17],
+          "reflection": false,
+          "motion": {
+            "motion_type": "none"
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "bird_2.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.71, 0.5],
+          "reflection": true,
+          "motion": {
+            "motion_type": "none"
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "music_2.png",
+          "z-index": 3,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.7, 0.38],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [0, -4]
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "music_2.png",
+          "z-index": 3,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.18, 0.05],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [0, -4]
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "music_2.png",
+          "z-index": 3,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.86, -0.03],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [0, -3]
+            }
+          }
+        }
+      ],
+      "scene_effect": [
+        {
+          "effect_type": "scene_fade_in",
+          "effect_appearance_time": 0.0,
+          "effect_duration": 1.0,
+          "fade_color": [122, 88, 55]
+        },
+        {
+          "effect_type": "scene_fade_out",
+          "in_the_end": true,
+          "effect_duration": 1.0,
+          "fade_color": [255, 249, 215]
+        }
+      ]
+    }
+  ]
+}
