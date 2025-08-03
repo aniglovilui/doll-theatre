@@ -27,10 +27,12 @@ def processScenarioData(scenario_data,
                         scene_numbers=None, 
                         test_duration=None):
     try:
-        scenario_name = scenario_data.get("scenario_name", "Untitled")
+        scenario_title = scenario_data.get("scenario_title", "Untitled")
+        scenario_title_for_path = scenario_data.get("scenario_title_for_path", "Untitled")
         # Создаем директорию для кадров
-        if not os.path.exists(f"performances/{scenario_name}"):
-            os.makedirs(f"performances/{scenario_name}")
+        scenario_path = f"performances/{scenario_title_for_path}"
+        if not os.path.exists(scenario_path):
+            os.makedirs(scenario_path)
 
         default_movie_sizes = [1280, 720]
         movie_sizes = scenario_data.get("movie_sizes", default_movie_sizes)
@@ -110,8 +112,9 @@ def processScenarioData(scenario_data,
                 if scale <= 0: 
                     print(f"processScenarioData -> Недопустимое значение масштаба: {scale}")
                 elif scale != 1.0:
-                    prepared_object_image = prepared_object_image.resize((int(prepared_object_image.size[0]*scale), int(prepared_object_image.size[1]*scale)),
-                                                                         Image.Resampling.BICUBIC)
+                    prepared_object_image = prepared_object_image.resize((int(prepared_object_image.size[0]*scale), 
+                                                                          int(prepared_object_image.size[1]*scale)),
+                                                                          Image.Resampling.BICUBIC)
                 
                 # поворот
                 rotation_angle = element.get("rotation_angle", 0)
@@ -248,7 +251,7 @@ def processScenarioData(scenario_data,
         curtains_clip_down = animateElement(curtains_clip, curtains_motion[1], op_and_ed_duration, [0, -curtains_clip.h], final_movie.size)
         
         font_name = main_font.get("font_name", default_main_font["font_name"])
-        text = [scenario_name, "Конец"]    
+        text = [scenario_title, "Конец"]    
         op_ed_replica_clips = []  
         for i in range(2):  
             op_ed_replica_clips.append(TextClip(font=f"sources/fonts/{font_name}",
@@ -274,7 +277,7 @@ def processScenarioData(scenario_data,
         
         final_movie = concatenate_videoclips([op, final_movie, ed], method="compose")
 
-        output_movie_path = f"performances/{scenario_name}/{scenario_name}.mp4"
+        output_movie_path = f"{scenario_path}/{scenario_title_for_path}.mp4"
         final_movie.write_videofile(output_movie_path, fps=24)
         print(f"processScenarioData -> Итоговое видео сохранено: {output_movie_path}")
           

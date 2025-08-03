@@ -197,14 +197,4 @@ def affineTransform(object_array, angle_in_degrees=0, tx=0, ty=0, sx=1, sy=1, mi
     # Зеркальное отображение
     if mirror: transformed_image = np.flip(transformed_image, axis=1) 
     return transformed_image # Возвращает NumPy массив
-
-
-if __name__ == "__main__":
-    input_image_path = "sources/images/characters/knyajna_test2.png"
-    output_path = "sources/images/characters/knyajna_test2_prep_morf.png"
-    prepareObjectImage(input_image_path, threshold_flood=135, need_castom_Sobel=False, need_save=True, output_path=output_path)
-    # image = np.array(prepareObjectImage(input_image_path, threshold_flood=35, need_castom_Sobel=False, need_save=False, output_path=output_path))
-    # image = affineTransform(image, -15, sx=1, sy=0.35)
-    # image = Image.fromarray(image, "RGBA")
-    # image.save(output_path)
     

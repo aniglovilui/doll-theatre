@@ -1,5 +1,6 @@
 {
-  "scenario_name": "test_scenario",
+  "scenario_title": "Test Scenario",
+  "scenario_title_for_path": "test_scenario",
   "movie_sizes": [1280, 720],
   "main_font": {
     "font_name": "Cormorant/static/Cormorant-Medium.ttf",
