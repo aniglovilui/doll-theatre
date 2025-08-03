@@ -18,153 +18,231 @@
   },
   "scenes": [
     {
-      "index": 12,
-      "description": "Лес, царевич слепыми глазами смотрит в небо.",
-      "duration": 8.0,
-      "background": "garden.png",
+      "index": 1,
+      "description": "Княжна стоит посреди богато убранной комнаты, расставив руки в стороны, одетая в расшитое платье, во всевозможных украшениях, с кокошником на голове. Вокруг нее с обоих сторон служанки.",
+      "duration": 7.0,
+      "background": "palace_hall_1.png",
+      "lines": [
+        {
+          "character": "Рассказчик",
+          "text": "В далекой стране жила невероятной красоты княжна.",
+          "appearing_time": 0.01,
+          "time": 1.7
+        },
+        {
+          "character": "Рассказчик",
+          "text": "У княжны было все, о чем только можно мечтать: шелком расшитые одежды, украшения из филигранного золота и драгоценных каменьев.",
+          "time": 5.3
+        }
+      ],
       "composition": [
         {
           "category": "characters",
-          "image_name": "tsarevitch_4.png",
-          "z-index": 2,
-          "scale": 1.0,
-          "rotation_angle": 0,
-          "coordinates": [0.25, 0.23],
-          "reflection": false,
-          "motion": {
-            "motion_type": "none"
-          }
-        },
-        {
-          "category": "props",
-          "image_name": "sun.png",
-          "z-index": 2,
-          "scale": 1.0,
-          "rotation_angle": 0,
-          "coordinates": [0.63, 0.08],
-          "reflection": false,
-          "motion": {
-            "motion_type": "rotation",
-            "starting_time": 0.0,
-            "params": {
-              "angle_speed": 10
-            }
-          }
-        },
-        {
-          "category": "props",
-          "image_name": "sun_halo.png",
+          "image_name": "knyajna_1.png",
           "z-index": 1,
-          "scale": 0.5,
+          "scale": 1.1,
           "rotation_angle": 0,
-          "coordinates": [0.54, -0.08],
-          "reflection": false,
-          "opacity": 0.7,
-          "motion": {
-            "motion_type": "rotation",
-            "starting_time": 0.0,
-            "params": {
-              "angle_speed": -10
-            }
-          }
-        },
-        {
-          "category": "props",
-          "image_name": "bird.png",
-          "z-index": 2,
-          "scale": 1.0,
-          "rotation_angle": 0,
-          "coordinates": [0.88, 0.1],
-          "reflection": true,
-          "motion": {
-            "motion_type": "none"
-          }
-        },
-        {
-          "category": "props",
-          "image_name": "bird_2.png",
-          "z-index": 2,
-          "scale": 1.0,
-          "rotation_angle": 0,
-          "coordinates": [0.12, 0.17],
+          "coordinates": [0.51, 0.13],
           "reflection": false,
           "motion": {
             "motion_type": "none"
           }
         },
         {
-          "category": "props",
-          "image_name": "bird_2.png",
+          "category": "characters",
+          "image_name": "maid_first.png",
           "z-index": 2,
           "scale": 1.0,
           "rotation_angle": 0,
-          "coordinates": [0.71, 0.5],
-          "reflection": true,
-          "motion": {
-            "motion_type": "none"
-          }
-        },
-        {
-          "category": "props",
-          "image_name": "music_2.png",
-          "z-index": 3,
-          "scale": 1.0,
-          "rotation_angle": 0,
-          "coordinates": [0.7, 0.38],
+          "coordinates": [0.69, 0.32],
           "reflection": false,
           "motion": {
             "motion_type": "linear",
             "starting_time": 0.0,
             "params": {
-              "speed": [0, -4]
+              "speed": [-2, 0]
+            }
+          }
+        },
+        {
+          "category": "characters",
+          "image_name": "maid_second.png",
+          "z-index": 2,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.33, 0.24],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [3, 0]
+            }
+          }
+        },
+        {
+          "category": "characters",
+          "image_name": "maid_third.png",
+          "z-index": 2,
+          "scale": 0.95,
+          "rotation_angle": 0,
+          "coordinates": [0.09, 0.32],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [2, 0]
             }
           }
         },
         {
           "category": "props",
-          "image_name": "music_2.png",
+          "image_name": "little_box.png",
           "z-index": 3,
           "scale": 1.0,
           "rotation_angle": 0,
-          "coordinates": [0.18, 0.05],
+          "coordinates": [0.29, 0.43],
           "reflection": false,
           "motion": {
             "motion_type": "linear",
             "starting_time": 0.0,
             "params": {
-              "speed": [0, -4]
+              "speed": [2, 0]
             }
           }
         },
         {
           "category": "props",
-          "image_name": "music_2.png",
+          "image_name": "beads_opened.png",
           "z-index": 3,
           "scale": 1.0,
           "rotation_angle": 0,
-          "coordinates": [0.86, -0.03],
+          "coordinates": [0.5, 0.42],
           "reflection": false,
           "motion": {
             "motion_type": "linear",
             "starting_time": 0.0,
             "params": {
-              "speed": [0, -3]
+              "speed": [3, 0]
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "scarf_2.png",
+          "z-index": 3,
+          "scale": 1.0,
+          "rotation_angle": 0,
+          "coordinates": [0.69, 0.5],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "params": {
+              "speed": [-2, 0]
             }
           }
         }
-      ],
-      "scene_effect": [
+      ]
+    },
+    {
+      "index": 2,
+      "description": "Княжна плачет, служанки пытаются ее успокоить.",
+      "duration": 9.8,
+      "background": "palace_hall_1.png",
+      "lines": [
         {
-          "effect_type": "scene_fade_in",
-          "effect_appearance_time": 0.0,
-          "effect_duration": 1.0,
-          "fade_color": [122, 88, 55]
+          "character": "Рассказчик",
+          "text": "Однако, каждый раз, как княжна видела что-то, что цепляло ее интерес, она не могла спокойно спать, пока этого не получит.",
+          "time": 4.2
         },
         {
-          "effect_type": "scene_fade_out",
-          "in_the_end": true,
-          "effect_duration": 1.0,
-          "fade_color": [255, 249, 215]
+          "character": "Княжна",
+          "text": "Я теперь совершенно несчастна!",
+          "time": 2.5
+        },
+        {
+          "character": "Рассказчик",
+          "text": "Но все желания княжны непременно исполнялись и в княжестве царило спокойствие.",
+          "time": 3.1
+        }
+      ],
+      "composition": [
+        {
+          "category": "characters",
+          "image_name": "knyajna_2.png",
+          "z-index": 1,
+          "scale": 1.7,
+          "rotation_angle": 0,
+          "coordinates": [0.33, 0.03],
+          "reflection": true,
+          "motion": {
+            "motion_type": "none"
+          }
+        },
+        {
+          "category": "characters",
+          "image_name": "maid_first.png",
+          "z-index": 2,
+          "scale": 1.7,
+          "rotation_angle": 0,
+          "coordinates": [0.61, 0.33],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "motion_time": 8.3,
+            "params": {
+              "speed": [-2, 0]
+            }
+          }
+        },
+        {
+          "category": "characters",
+          "image_name": "maid_second.png",
+          "z-index": 2,
+          "scale": 1.7,
+          "rotation_angle": 0,
+          "coordinates": [-0.02, 0.22],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 0.0,
+            "motion_time": 8.3,
+            "params": {
+              "speed": [2, 0]
+            }
+          }
+        },
+        {
+          "category": "props",
+          "image_name": "tears.png",
+          "z-index": 3,
+          "scale": 0.9,
+          "rotation_angle": 0,
+          "coordinates": [0.47, 0.15],
+          "reflection": false,
+          "motion": {
+            "motion_type": "linear",
+            "starting_time": 3.2,
+            "motion_time": 4.1,
+            "params": {
+              "speed": [0, 10]
+            }
+          },
+          "effect": [
+            {
+              "effect_type": "appearance",
+              "effect_appearance_time": 3.2,
+              "effect_duration": 1.0
+            },
+            {
+              "effect_type": "disappearance",
+              "effect_appearance_time": 6.3,
+              "effect_duration": 1.0
+            }
+          ]
         }
       ]
     }

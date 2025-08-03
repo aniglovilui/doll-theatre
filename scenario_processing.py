@@ -288,14 +288,14 @@ def processScenarioData(scenario_data,
           
     except FileNotFoundError:
         print("processScenarioData -> Ошибка: Файл не найден.")
-    except json.JSONDecodeError:
-        print("processScenarioData -> Ошибка: Некорректный JSON.")
-    except KeyError:
-        print("processScenarioData -> Ошибка: Ключ не найден.")
-    except TypeError:
-        print("processScenarioData -> Ошибка: Неверный тип данных.")
-    except Exception as e:
-        print(f"processScenarioData -> Произошла ошибка: {e}")
+    # except json.JSONDecodeError:
+    #     print("processScenarioData -> Ошибка: Некорректный JSON.")
+    # except KeyError:
+    #     print("processScenarioData -> Ошибка: Ключ не найден.")
+    # except TypeError:
+    #     print("processScenarioData -> Ошибка: Неверный тип данных.")
+    # except Exception as e:
+    #     print(f"processScenarioData -> Произошла ошибка: {e}")
 
 
 def ifRelativeToAbsoluteCoordinates(coordinates, background_image_sizes):
