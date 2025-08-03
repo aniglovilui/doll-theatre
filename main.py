@@ -1,7 +1,6 @@
 # TO DO:
-# добамить возможномть выключить занавес
-# если пустое видео выдается ошибка
-# если в тестовом режиме в сценарии несколько сцен и эти номера не указаны в массиве выдает ошибку
+# рефакторинг разбить функции на вспомагательные
+# объект настроек как параметр функций
 
 from scenario_processing import loadJSON, processScenarioData
 
@@ -21,6 +20,7 @@ if __name__ == "__main__":
                         check_for_prepared=True,
                         need_objects_preparation=True, 
                         save_prepared=True, 
+                        add_curtains=True,
                         scene_numbers=needed_scenes, 
                         test_duration=test_duration)
     else:
@@ -28,7 +28,8 @@ if __name__ == "__main__":
         processScenarioData(scenario_data,  
                         check_for_prepared=True,
                         need_objects_preparation=True, 
-                        save_prepared=True)
+                        save_prepared=True,
+                        add_curtains=True)
 
     # video_clip = VideoFileClip("performances/Счастье в шкатулке/Счастье в шкатулке.mp4")
     # # Ускоряем видео в 2 раза

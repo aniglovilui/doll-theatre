@@ -24,6 +24,7 @@ def processScenarioData(scenario_data,
                         check_for_prepared=True, 
                         need_objects_preparation=False, 
                         save_prepared=False,
+                        add_curtains=True,
                         scene_numbers=None, 
                         test_duration=None):
     try:
@@ -223,59 +224,63 @@ def processScenarioData(scenario_data,
             # clip = FadeOut(0.5).apply(clip)
             scene_clips.append(clip)
 
+        if not scene_clips:
+            print(f"processScenarioData -> В итоговом видео нет ни одной сцены!")
+            return
         final_movie = concatenate_videoclips(scene_clips, method="compose")
         
-        op_and_ed_duration = 5
-        curtains_moving_time = 3.0
-        raw_op = ImageClip(final_movie.get_frame(0)).with_duration(op_and_ed_duration).with_layer_index(0)
-        raw_ed = ImageClip(final_movie.get_frame(final_movie.duration-0.01)).with_duration(op_and_ed_duration).with_layer_index(0)
-        curtains_clip = ImageClip("sources/environ/curtains.png").resized(width=movie_sizes[0]).with_duration(op_and_ed_duration).with_layer_index(1)
-        curtains_motion = [
-            { 
-                "motion_type": "linear",
-                "starting_time": op_and_ed_duration - curtains_moving_time,
-                "params": {
-                    "speed": [0, -curtains_clip.h/curtains_moving_time]
+        if add_curtains:
+            op_and_ed_duration = 5
+            curtains_moving_time = 3.0
+            raw_op = ImageClip(final_movie.get_frame(0)).with_duration(op_and_ed_duration).with_layer_index(0)
+            raw_ed = ImageClip(final_movie.get_frame(final_movie.duration-0.01)).with_duration(op_and_ed_duration).with_layer_index(0)
+            curtains_clip = ImageClip("sources/environ/curtains.png").resized(width=movie_sizes[0]).with_duration(op_and_ed_duration).with_layer_index(1)
+            curtains_motion = [
+                { 
+                    "motion_type": "linear",
+                    "starting_time": op_and_ed_duration - curtains_moving_time,
+                    "params": {
+                        "speed": [0, -curtains_clip.h/curtains_moving_time]
+                    }
+                },
+                { 
+                    "motion_type": "linear",
+                    "starting_time": 0.0,
+                    "motion_time": curtains_moving_time,
+                    "params": {
+                        "speed": [0, curtains_clip.h/curtains_moving_time]
+                    }
                 }
-            },
-            { 
-                "motion_type": "linear",
-                "starting_time": 0.0,
-                "motion_time": curtains_moving_time,
-                "params": {
-                    "speed": [0, curtains_clip.h/curtains_moving_time]
-                }
-            }
-        ]
-        curtains_clip_up = animateElement(curtains_clip, curtains_motion[0], op_and_ed_duration, [0, 0], final_movie.size)
-        curtains_clip_down = animateElement(curtains_clip, curtains_motion[1], op_and_ed_duration, [0, -curtains_clip.h], final_movie.size)
-        
-        font_name = main_font.get("font_name", default_main_font["font_name"])
-        text = [scenario_title, "Конец"]    
-        op_ed_replica_clips = []  
-        for i in range(2):  
-            op_ed_replica_clips.append(TextClip(font=f"sources/fonts/{font_name}",
-                                                text=text[i],
-                                                font_size=80, # сделать регулируемым
-                                                size=(movie_sizes[0], None),
-                                                margin=(scene_clip.size[0]*0.2, scene_clip.size[1]*0.05),
-                                                color="#f2c572",
-                                                stroke_color="#753412", 
-                                                stroke_width=3,
-                                                method="caption",
-                                                text_align="center")
-                                            .with_position(("center", "center"))
-                                            .with_start(0.0)
-                                            .with_duration(op_and_ed_duration)
-                                            .with_layer_index(2))
-        op_ed_replica_clips[0] = op_ed_replica_clips[0].with_effects([CrossFadeOut(curtains_moving_time)])
-        op_ed_replica_clips[1] = op_ed_replica_clips[1].with_effects([CrossFadeIn(curtains_moving_time)])
-        
-        
-        op = CompositeVideoClip([raw_op, curtains_clip_up, op_ed_replica_clips[0]]).with_duration(op_and_ed_duration)
-        ed = CompositeVideoClip([raw_ed, curtains_clip_down, op_ed_replica_clips[1]]).with_duration(op_and_ed_duration)
-        
-        final_movie = concatenate_videoclips([op, final_movie, ed], method="compose")
+            ]
+            curtains_clip_up = animateElement(curtains_clip, curtains_motion[0], op_and_ed_duration, [0, 0], final_movie.size)
+            curtains_clip_down = animateElement(curtains_clip, curtains_motion[1], op_and_ed_duration, [0, -curtains_clip.h], final_movie.size)
+            
+            font_name = main_font.get("font_name", default_main_font["font_name"])
+            text = [scenario_title, "Конец"]    
+            op_ed_replica_clips = []  
+            for i in range(2):  
+                op_ed_replica_clips.append(TextClip(font=f"sources/fonts/{font_name}",
+                                                    text=text[i],
+                                                    font_size=80, # сделать регулируемым
+                                                    size=(movie_sizes[0], None),
+                                                    margin=(scene_clip.size[0]*0.2, scene_clip.size[1]*0.05),
+                                                    color="#f2c572",
+                                                    stroke_color="#753412", 
+                                                    stroke_width=3,
+                                                    method="caption",
+                                                    text_align="center")
+                                                .with_position(("center", "center"))
+                                                .with_start(0.0)
+                                                .with_duration(op_and_ed_duration)
+                                                .with_layer_index(2))
+            op_ed_replica_clips[0] = op_ed_replica_clips[0].with_effects([CrossFadeOut(curtains_moving_time)])
+            op_ed_replica_clips[1] = op_ed_replica_clips[1].with_effects([CrossFadeIn(curtains_moving_time)])
+            
+            
+            op = CompositeVideoClip([raw_op, curtains_clip_up, op_ed_replica_clips[0]]).with_duration(op_and_ed_duration)
+            ed = CompositeVideoClip([raw_ed, curtains_clip_down, op_ed_replica_clips[1]]).with_duration(op_and_ed_duration)
+            
+            final_movie = concatenate_videoclips([op, final_movie, ed], method="compose")
 
         output_movie_path = f"{scenario_path}/{scenario_title_for_path}.mp4"
         final_movie.write_videofile(output_movie_path, fps=24)
