@@ -1,36 +1,52 @@
-from image_preparation import prepareObjectImage, affineTransform
+import os
+import json
+import numpy as np
 from PIL import Image, ImageFont
 from moviepy import ImageClip, TextClip, CompositeVideoClip, concatenate_videoclips
 from moviepy.video.fx import Rotate, FadeOut, FadeIn, CrossFadeOut, CrossFadeIn
-import numpy as np
-import os
-import json
+from image_preparation import prepareObjectImage
 
-# Функция загрузки данных из JSON-файла
+
+
 def loadJSON(filename):
+    """
+        Load data from JSON-file.
+
+        Args:
+            filename: Scenario filename.
+        
+        Returns: 
+            data: Scenario data.
+    """
     try:
         with open(filename, "r", encoding='utf-8') as file:
             data = json.load(file)
         return data
     except FileNotFoundError:
-        print("loadJSON -> Ошибка: Файл не найден.")
+        print("loadJSON -> Error: Scenario file not found.")
     except json.JSONDecodeError:
-        print("loadJSON -> Ошибка: Некорректный JSON.")
+        print("loadJSON -> Error: Incorrect JSON.")
     except Exception as e:
-        print(f"loadJSON -> Произошла непредвиденная ошибка: {e}")
+        print(f"loadJSON -> Error: {e}")
 
-# Функция обработки данных из JSON-файла
-def processScenarioData(scenario_data, 
-                        check_for_prepared=True, 
-                        need_objects_preparation=False, 
-                        save_prepared=False,
-                        add_curtains=True,
-                        scene_numbers=None, 
-                        test_duration=None):
+
+
+def processScenarioData(
+        scenario_data, 
+        check_for_prepared=True, 
+        need_objects_preparation=False, 
+        save_prepared=False,
+        add_curtains=True,
+        scene_numbers=None, 
+        test_duration=None,
+    ):
+    """
+        Process scenario data from JSON-file.
+    """
     try:
         scenario_title = scenario_data.get("scenario_title", "Untitled")
         scenario_title_for_path = scenario_data.get("scenario_title_for_path", "Untitled")
-        # Создаем директорию для кадров
+        # create a directory for frames
         scenario_path = f"performances/{scenario_title_for_path}"
         if not os.path.exists(scenario_path):
             os.makedirs(scenario_path)
@@ -68,7 +84,7 @@ def processScenarioData(scenario_data,
             else:
                 duration = scene.get("duration")
 
-            # Фон
+            # background
             background_image_name = scene.get("background")
             background_image_path = f"sources/images/backgrounds/{background_image_name}"
 
@@ -77,7 +93,7 @@ def processScenarioData(scenario_data,
 
             clips = [background_clip]
 
-            # Обработка объектов 
+            # process objects
             composition = scene.get("composition", [])
             for i, element in enumerate(composition):
 
@@ -88,7 +104,7 @@ def processScenarioData(scenario_data,
                 extension = os.path.splitext(image_name)[1]
                 object_image_path = folder + image_name
 
-                # Подготовка вставляемого изображения
+                # prepare object image
                 object_image_loaded = False
                 prepared_object_image_path = folder + name_without_extension + "_prepared" + extension
                 if check_for_prepared:
@@ -106,65 +122,65 @@ def processScenarioData(scenario_data,
                         prepared_object_image = Image.open(object_image_path).convert("RGBA")
                 
                 if not prepared_object_image: 
-                    raise Exception(f"Не удалось открыть файл объекта {image_name}.")
+                    raise Exception(f"Failed to open file for object: {image_name}.")
 
-                # масштабирование
+                # scaling
                 scale = element.get("scale", 1.0)
                 if scale <= 0: 
-                    print(f"processScenarioData -> Недопустимое значение масштаба: {scale}")
+                    print(f"processScenarioData -> Invalid scale value: {scale}")
                 elif scale != 1.0:
                     prepared_object_image = prepared_object_image.resize((int(prepared_object_image.size[0]*scale), 
                                                                           int(prepared_object_image.size[1]*scale)),
                                                                           Image.Resampling.BICUBIC)
                 
-                # поворот
+                # rotation
                 rotation_angle = element.get("rotation_angle", 0)
                 if rotation_angle != 0:
                     prepared_object_image = prepared_object_image.rotate(rotation_angle, resample=Image.Resampling.BICUBIC, expand=True) 
                 
-                # обрезка пустых краев
+                # trim blank sides
                 prepared_object_image = prepared_object_image.crop(prepared_object_image.getbbox())
 
-                # зеркальное отображение
+                # mirroring
                 prepared_object_array = np.asarray(prepared_object_image)
                 reflection = element.get("reflection", False)
                 if reflection: 
                     prepared_object_array = np.flip(prepared_object_array, axis=1)
                 
-                # создаем из изображения оюъекта ImageClip
+                # create an ImageClip object from the image
                 image_clip = ImageClip(prepared_object_array).with_duration(duration) 
                 
-                # непрозрачность
+                # opacity
                 opacity = element.get("opacity", 1)
                 if opacity < 0 or opacity > 1: 
                     print(f"processScenarioData -> Недопустимое значение непрозрачности: {opacity}")
                 elif opacity != 1:
                     image_clip = image_clip.with_opacity(opacity)
 
-                # ЭФФЕКТЫ
+                # object effects
                 for effect in element.get("effect", []):
                     if effect and (effect.get("effect_type", "none") != "none"):
                         image_clip = addEffect(image_clip, effect, duration)
 
-                # АНИМАЦИЯ и позиционирование
+                # ANIMATION and positioning
                 coordinates = ifRelativeToAbsoluteCoordinates(element.get("coordinates", [0, 0]), background_image_sizes)
                 motion = element.get("motion", None)
                 if motion and (motion.get("motion_type", "none") != "none"):
                     image_clip = animateElement(image_clip, motion, duration, coordinates, background_image_sizes)
-                else: # Если нет движения, просто позиционируем элемент
+                else: # if no movement simply position the element
                     image_clip = image_clip.with_position(coordinates)
 
                 clips.append(image_clip.with_layer_index(element.get("z-index", i)))
 
-            #Создание финального клипа сцены
+            # create the final clip of the scene
             scene_clip = CompositeVideoClip(clips).resized(width=movie_sizes[0]).with_duration(duration)
 
-            # ЭФФЕКТЫ СЦЕНЫ
+            # scene effects
             for scene_effect in scene.get("scene_effect", []):
                 if scene_effect and (scene_effect.get("effect_type", "none") != "none"):
                     scene_clip = addEffect(scene_clip, scene_effect, duration)
 
-            # Реплики
+            # lines
             lines = scene.get("lines", [])
 
             subtitle_clips = []
@@ -197,12 +213,11 @@ def processScenarioData(scenario_data,
                 
                 last_disappear = appearing_time + show_time
                     
-                # субтитры
-                # Разбиваем длинный текст по строкам
+                # subtitles
+                # breaking long text into lines
                 wrapped_text = wrapText(text, font_path, font_size, scene_clip.size[0]*0.9)
 
                 replica_clip = (TextClip(font=font_path,
-                                    # text=full_text, 
                                     text=wrapped_text,
                                     font_size=font_size,
                                     size=(movie_sizes[0], None),
@@ -219,16 +234,17 @@ def processScenarioData(scenario_data,
                 subtitle_clips.append(replica_clip) 
 
             clip = CompositeVideoClip([scene_clip, *subtitle_clips]).with_duration(duration)
-            # # Если переключение между сценами
+            # # if switching between scenes
             # clip = FadeIn(0.5).apply(clip)
             # clip = FadeOut(0.5).apply(clip)
             scene_clips.append(clip)
 
         if not scene_clips:
-            print(f"processScenarioData -> В итоговом видео нет ни одной сцены!")
+            print(f"processScenarioData -> The final video doesn't contain a single scene!")
             return
         final_movie = concatenate_videoclips(scene_clips, method="compose")
         
+        # add curtains if needed
         if add_curtains:
             op_and_ed_duration = 5
             curtains_moving_time = 3.0
@@ -261,7 +277,7 @@ def processScenarioData(scenario_data,
             for i in range(2):  
                 op_ed_replica_clips.append(TextClip(font=f"sources/fonts/{font_name}",
                                                     text=text[i],
-                                                    font_size=80, # сделать регулируемым
+                                                    font_size=80, # make adjustable
                                                     size=(movie_sizes[0], None),
                                                     margin=(scene_clip.size[0]*0.2, scene_clip.size[1]*0.05),
                                                     color="#f2c572",
@@ -284,45 +300,37 @@ def processScenarioData(scenario_data,
 
         output_movie_path = f"{scenario_path}/{scenario_title_for_path}.mp4"
         final_movie.write_videofile(output_movie_path, fps=24)
-        print(f"processScenarioData -> Итоговое видео сохранено: {output_movie_path}")
+        print(f"processScenarioData -> The final video saved at: {output_movie_path}")
           
     except FileNotFoundError:
-        print("processScenarioData -> Ошибка: Файл не найден.")
-    # except json.JSONDecodeError:
-    #     print("processScenarioData -> Ошибка: Некорректный JSON.")
-    # except KeyError:
-    #     print("processScenarioData -> Ошибка: Ключ не найден.")
-    # except TypeError:
-    #     print("processScenarioData -> Ошибка: Неверный тип данных.")
-    # except Exception as e:
-    #     print(f"processScenarioData -> Произошла ошибка: {e}")
+        print("processScenarioData -> Error: File not found.")
+    except json.JSONDecodeError:
+        print("processScenarioData -> Error: Invalid JSON.")
+    except KeyError:
+        print("processScenarioData -> Error: Key not found.")
+    except Exception as e:
+        print(f"processScenarioData -> Error: {e}")
 
-
-def ifRelativeToAbsoluteCoordinates(coordinates, background_image_sizes):
-    coordinates = np.array(coordinates)
-    if np.all((0 <= np.abs(coordinates)) & (np.abs(coordinates) <= 1)):
-        coordinates = [coordinates[0]*background_image_sizes[0], coordinates[1]*background_image_sizes[1]]
-    return coordinates
 
 
 def animateElement(clip, motion_data, scene_duration, coordinates, background_image_sizes):
     """
-    Анимирует клип в соответствии с заданными параметрами движения.
+    Animate a clip according to the specified motion parameters.
 
     Args:
-        clip (ImageClip):  Клип для анимации.
-        motion_data (dict):  Параметры движения из JSON.
-        scene_duration (float): Длительность всей сцены.
+        clip (ImageClip): The clip to animate.
+        motion_data (dict): Motion parameters from JSON.
+        scene_duration (float): Duration of the entire scene.
 
     Returns:
-        VideoClip: Анимированный видеоклип.
+        VideoClip: The animated video clip.
     """
     starting_time = motion_data.get("starting_time", 0.0)
     if starting_time >= scene_duration:
         return clip.with_position(clip.pos)
     motion_time = motion_data.get("motion_time", scene_duration-starting_time)  
     
-    # Убеждаемся, что motion_time не превышает длительность сцены
+    # make sure that motion_time does not exceed the duration of the scene
     if motion_time > scene_duration - starting_time:
         motion_time = scene_duration - starting_time  
     
@@ -343,9 +351,9 @@ def animateElement(clip, motion_data, scene_duration, coordinates, background_im
     w, h = clip.size
     def angle(t):
         if starting_time <= t <= starting_time + motion_time:
-            return omega * (t - starting_time)  # Угол поворота
+            return omega * (t - starting_time)  # rotation angle
         else:
-            return 0 if t < starting_time else omega * motion_time # Максимальный угол
+            return 0 if t < starting_time else omega * motion_time # max angle
         
     def position(t):
         x, y = start_x, start_y
@@ -355,7 +363,7 @@ def animateElement(clip, motion_data, scene_duration, coordinates, background_im
                 x = start_x + vx * local_t + ax * local_t**2 / 2
                 y = start_y + vy * local_t + ay * local_t**2 / 2
             else:
-                # Стоим на месте до или после анимации
+                # stand still before or after the animation
                 if t < starting_time:
                     x = start_x
                     y = start_y
@@ -376,8 +384,9 @@ def animateElement(clip, motion_data, scene_duration, coordinates, background_im
         return clip.with_position(position)
     else:
         print(f"animateElement -> Параметры для движения не указаны")
-        return clip.with_position(clip.pos)  # Без движения, возвращаем как есть
+        return clip.with_position(clip.pos)  # return without change
     
+
 
 def addEffect(clip, effect_data, scene_duration):
     effect_type = effect_data["effect_type"]
@@ -396,7 +405,7 @@ def addEffect(clip, effect_data, scene_duration):
             clip = clip.with_effects_on_subclip([CrossFadeOut(effect_duration)], effect_appearance_time)
         else:
             clip = clip.with_effects_on_subclip([CrossFadeOut(effect_duration)], effect_appearance_time, effect_end_time)     
-            clip = clip.subclipped(0, effect_end_time) # обрезаем то что после      
+            clip = clip.subclipped(0, effect_end_time) # cut off what appears after     
             empty_clip = ImageClip(np.zeros((clip.h, clip.w, 4))).with_duration(scene_duration-effect_end_time)
             clip = concatenate_videoclips([clip, empty_clip], method="compose")
         return clip
@@ -405,11 +414,11 @@ def addEffect(clip, effect_data, scene_duration):
             clip = clip.with_effects_on_subclip([CrossFadeIn(effect_duration)], effect_appearance_time)
         else:
             clip = clip.with_effects_on_subclip([CrossFadeIn(effect_duration)], effect_appearance_time, effect_end_time)
-        clip = clip.subclipped(effect_appearance_time) # обрезаем то что до появления
+        clip = clip.subclipped(effect_appearance_time) # cut off what appears before
         empty_clip = ImageClip(np.zeros((clip.h, clip.w, 4))).with_duration(effect_appearance_time)
         clip = concatenate_videoclips([empty_clip, clip], method="compose")
         return clip
-    elif effect_type in ["scene_fade_in", "scene_fade_out", "scene_flash"]: # эффект для собранного клипа сцены: уход в выбранный цвет
+    elif effect_type in ["scene_fade_in", "scene_fade_out", "scene_flash"]: # effect for the assembled scene clip: fade to the selected color
         fade_color = effect_data.get("fade_color", [0, 0, 0])
         if effect_type == "scene_fade_in":
             if effect_data.get("in_the_op", False):
@@ -442,11 +451,22 @@ def addEffect(clip, effect_data, scene_duration):
                 clip = concatenate_videoclips([clip, color_clip], method="compose")
         return clip
     else:
-        print(f"animateElement -> Неизвестный тип эффекта: {effect_type}")
-        return clip # Возвращаем как есть 
+        print(f"animateElement -> Unknown effect type: {effect_type}")
+        return clip # return without change 
+    
+
+
+def ifRelativeToAbsoluteCoordinates(coordinates, background_image_sizes):
+    # translate relative coordinates to absolute
+    coordinates = np.array(coordinates)
+    if np.all((0 <= np.abs(coordinates)) & (np.abs(coordinates) <= 1)):
+        coordinates = [coordinates[0]*background_image_sizes[0], coordinates[1]*background_image_sizes[1]]
+    return coordinates
+
+
     
 def wrapText(text, font_path, font_size, max_width):
-    # Разбивает текст по строкам, чтобы влез в заданную ширину
+    # split text into lines to fit within the specified width
     font = ImageFont.truetype(font_path, font_size)
     lines = []
     words = text.split()
