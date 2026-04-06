@@ -1,22 +1,26 @@
-# Цифровой кукольный театр
+# Digital puppet theater
 
-Приложение для автоматической генерации анимации по заданному в JSON формате сценарию. Программа получает на вход исходники изображений, файлы шрифтов, а также JSON файл, результатом обработки сценария является мультфильм, стилизованный под театральное представление.
+[Читать на русском](README.ru.md)
 
-Проект реализовн на языке Python с использованием библиотек OpenCV, Pillow и MoviePy.
+An application for automatically generating animations based on a scenario specified in JSON format. The program receives image source files, font files, and a JSON file as input; the script is processed and outputs a cartoon stylized as a theatrical performance.
 
-Список автоматизированных действий:
+The project is implemented in Python using the OpenCV, Pillow, and MoviePy libraries.
 
-1. Выборка изображений и их предобработка (удаление простого фона)
-2. Аффинные преобразования изображений
-3. Позиционирование изображения объекта в сцене
-4. Движение объекта с заданными параметрами
-5. Наложение эффектов на изображение объекта
-6. Создание общего клипа сцены
-7. Наложение на клип сцены выбранных эффектов
-8. Создание субтитров сцены
-9. Компиляция сцен в итоговое видео и его сохранение
+List of automated actions:
 
-## Установка
+1. Image selection and preprocessing, which involves removing simple backgrounds using the Sobel operator and morphological operations.
+2. Image transformation: scaling, rotation, and mirroring.
+3. Positioning the object image in the scene.
+4. Object movement with specified parameters.
+5. Applying effects to the object image.
+6. Creating a scene clip.
+7. Applying selected effects to the scene clip.
+8. Creating scene subtitles.
+9. Compiling scenes into a final video and saving it.
+
+For research purposes, a custom function was also implemented that calculates a gradient based on the Sobel operator with 3x3 kernels.
+
+## Installation
 
 ```bash
 git clone https://github.com/aniglovilui/doll-theatre.git
@@ -24,35 +28,37 @@ cd doll-theatre
 pip install -r requirements.txt
 ```
 
-## Входные данные
+## Input Data
 
-Все исходники изображений загружаются пользователем самостоятельно в папку sources/ в корне проекта.
+All image sources are manually uploaded by the user to the **sources/** folder in the project root.
 
-### 1. Исходники изображений
+### 1. Image Sources
 
-Изображения персонажей добавляются в подпапку sources/images/characters/, предметов - в sources/images/props/, фонов - в sources/images/backgrounds/.
+Character images are added to the **sources/images/characters/** subfolder, item images to **sources/images/props/**, and background images to **sources/images/backgrounds/**.
 
-### 2. Исходники шрифтов
+### 2. Font sources
 
-Файлы шрифтов .ttf должны находится в папке sources/fonts/
+The .ttf font files should be located in the **sources/fonts/** folder.
 
-### 3. JSON файлы сценариев
+### 3. JSON script files
 
-Файлы сценариев помещаются в папку scanarios/ в корне проекта.
+The script files are placed in the **scenarios/** folder in the project root.
 
-## Запуск
+## Launch
 
 ```bash
 python3 main.py
 ```
 
-Для демонстрации работы программы в консоль после вывода `Введите имя файла без расширения:` необходимо ввести `scenario_test`, в файле scenario_test.json содержаться первые две сцены демонстрационного мультфильма. Полностью демонстрационного мультфильм может быть воссоздан при вводе `happieness_in_a_box` в качестве названия файла и найден с аналогичным именем в performances/.
+To demonstrate the program's operation, enter `scenario_test` in the console after `Enter file name without extension:` output. The file **scenario_test.json** contains the first two scenes of the demo cartoon. The full demo cartoon can be recreated by entering `happieness_in_a_box` as the file name and found with the same name in **performances/**.
 
-Для более удобной сборке мультфильма возможно использование тестового режима. Выбор тестового режима осуществляется путем ввода "y" на вопрос `Включить тестовый режим? [y/n]:`. Он подразумевает возможность выбора конкретных сцен, которые необходимо зарендерить, а также ограничения их по времени для сверки композиции.
+For more convenient compilation of the cartoon, you can use test mode. Test mode is selected by entering "y" to the question `Enable test mode? [y/n]:`. This mode allows you to select specific scenes to render, as well as time limits for them to verify the composition.
 
-## Шаблон JSON сценария
+## Scenario JSON Template
 
-Сценарий имеет следующую многоуровневую структуру (данные вставлены для наглядности).
+### Structure
+
+The scenario has the following multi-level structure (data is included for clarity). A detailed description and purpose of each field can be found below in the [Field Description](#field-description) section.
 
 ```JSON
 {
@@ -81,7 +87,7 @@ python3 main.py
             "lines": [
                 {
                     "character": "Character name",
-                    "text": "Text.",
+                    "text": "Some text.",
                     "font": {
                         "font_size": 120,
                         "font_color": "#ebc354",
@@ -90,7 +96,8 @@ python3 main.py
                     },
                     "appearing_time": 0.0,
                     "time": 5.3,
-                }, {…}
+                },
+                {...}
             ],
             "composition": [
                 {
@@ -116,13 +123,10 @@ python3 main.py
                         "effect_appearance_time": 3.2,
                         "effect_duration": 1.0
                         },
-                        {
-                        "effect_type": "disappearance",
-                        "effect_appearance_time": 6.3,
-                        "effect_duration": 1.0
-                        }
+                        {...}
                     ]
-                }, {…}
+                },
+                {...}
             ],
             "scene_effect": [
                 {
@@ -132,82 +136,86 @@ python3 main.py
                     "fade_color": [0, 0, 0]
                 }
             ]
-        }, {…}
+        },
+        {...}
     ]
 }
 
 ```
 
-### Описание полей
+### Field Description
 
-Глобальные параметры
+#### Global Parameters
 
-- scenario_name (string) – Определяет название сценария.
-- movie_sizes (array) – Размеры выходного видео в пикселях, записанные в формате [ширина, высота].
+- `scenario_name` (string) – Defines the name of the scenario.
+- `movie_sizes` (list) – Output video dimensions in pixels, written in the [width, height] format.
 
-Стили текста
+**Text Styles**
 
-Шрифтовые стили унифицируются через объекты main_font, используемый для стилизации слов автора или рассказчика, и accent_font, используемый по умолчанию для реплик всех остальных персонажей. Разделение на основной и акцентный шрифты позволяет задать разные стили для основного текста и акцентных элементов, сокращая дублирование в описании сцен. Оба параметра являются опциональными: при их отсутствии, а также при отсутствии какого-либо из их полей, для определения пропущенных свойств используются значения по умолчанию.
+Font styles are standardized through the `main_font` objects, used to style the author's or narrator's lines, and the `accent_font`, used by default for all other character lines. Separating the main and accent fonts allows for different styles for the main text and accent elements, reducing duplication in scene descriptions. Both parameters are optional: if they are missing, or if any of their fields are missing, default values ​​are used to determine the missing properties.
 
-Каждый объект шрифта включает следующие свойства:
+Each font object includes the following properties:
 
-- font_name (string) – Имя файла шрифта trueType.
-- font_size (int) – Размер шрифта.
-- font_color (srting) – Цвет текста в HEX.
-- stroke_color (string) – Цвет обводки текста в HEX.
-- stroke_width (int) – Толщина обводки.
+- `font_name` (string) – TrueType font file name.
+- `font_size` (int) – Font size.
+- `font_color` (srting) – Text color in HEX.
+- `stroke_color` (string) – Text outline color in HEX.
+- `stroke_width` (int) – Outline width.
 
-Массив сцен (scenes)
+#### Scenes List
 
-Представляет собой массив объектов, каждый из которых описывает одну сцену мультфильма, при этом каждая сцена является самостоятельным блоком. Сцена характеризуется следующими параметрами:
+This is an list of objects, each describing a single scene in the cartoon, with each scene being an independent block. A scene is characterized by the following parameters:
 
-- index (int) – Порядковый номер сцены в сценарии.
-- description (string, optional) – Текстовое описание сцены для удобства автора.
-- duration (float) – Общая длительность сцены в секундах.
-- background (string) – Имя файла фонового изображения для сцены.
+- `index` (int) – Scene index in the script.
+- `description` (string, optional) – Text description of the scene for the author's convenience.
+- `duration` (float) – Total scene duration in seconds.
+- `background` (string) – File name of the background image for the scene.
 
-Визуальное и временное наполнение сцены разделено на два смысловых блока: список реплик lines (array), описывающих текстовые реплики в сцене, и композицию composition (array).
-Список реплик (lines) представляет собой массив объектов, имеющих параметры:
+The visual and temporal content of a scene is divided into two semantic blocks: the `lines` list, which describes the text lines in the scene, and the `composition` (list).
+The `lines` list is an array of objects with the following parameters:
 
-- character (string) – Имя персонажа, произносящего реплику.
-- text (string) – Текст реплики.
-- font (object, optional) – Локальный стиль текста для реплики. Позволяет переопределить глобальные main_font или accent_font или их отдельные поля для конкретной реплики, вследствие этого содержит те же поля (font_size, font_color и т.д.). Отсутствующие поля наследуются из глобального стиля.
-- appearing_time (float, optional) – Время появления реплики на экране относительно начала сцены, в секундах. Поле может быть опущено, при отсутствии автоматически рассчитывается по времени появления и длительности прошлой реплики. При отсутствии параметра во всех репликах сцены реплики будут идти друг за другом, начиная с времени 0.0.
-- time (float) – Время нахождения реплики на экране относительно времени появления реплики, в секундах.
+- `character` (string) – The name of the character speaking the line.
+- `text` (string) – The text of the line.
+- `font` (object, optional) – The local text style for the line. Allows you to override the global `main_font` or `accent_font` or their individual fields for a specific line, and therefore contains the same fields (`font_size`, `font_color`, etc.). Missing fields are inherited from the global style.
+- `appearing_time` (float, optional) – The time a line appears on screen relative to the scene start, in seconds. This field can be omitted; if omitted, it is automatically calculated based on the appearance time and duration of the previous line. If this parameter is omitted, all lines in the scene will appear one after another, starting at time 0.0.
+- `time` (float) – The time a line appears on screen relative to the appearance time, in seconds.
 
-Список используемых в сцене визуальных элементов composition представляет собой массив объектов с параметрами:
+The list of visual elements used in the `composition` scene is an array of objects with the following parameters:
 
-- category (string) – Категория элемента. Значение может быть одним из вариантов: "characters", "props".
-- image_name (string) – Имя файла изображения элемента.
-- z-index (int) – Уровень слоя. Определяет порядок отрисовки, при котором элементы с большим значением рисуются поверх.
-- scale (float, optional) – Масштаб элемента. Значение, равное 1.0, соответствует масштабы 100%. По умолчанию равен 100%.
-- rotation_angle (float, optional) – Угол поворота элемента в градусах. По умолчанию равен 0.
-- coordinates (array) – Координаты позиции элемента относительно размеров видео в формате [x, y], где [0.0, 0.0] соответствует левому верхнему углу фонового изображения, [1.0, 1.0] – правому нижнему. Позволяет независимо позиционировать элементы при разных размерах видео. При желании возможно указание координат не в относительном формате, а в пикселях.
-- reflection (boolean, optional) – Флаг наличия зеркального отображения элемента по горизонтали. По умолчанию отображение отсутствует.
-- opacity (floatt, optional) – Непрозрачность элемента. Значение находится в диапазоне от 0 до 1. По умолчанию элемент является полностью непрозрачным, что соответствует значению 1.
-- motion (object, optional) – Объект, описывающий анимацию перемещения элемента. При отсутствии параметра движение не реализуется. Подробнее будет описан далее.
-- effect (objectt, optional) – Массив объектов, описывающих эффекты, применяемые к элементу (появление, исчезновение и т.д.). При отсутствии параметра эффекты не реализуются. Подробнее будет описан далее.
+- `category` (string) – The element's category. The value can be one of the following: `"characters"`, `"props"`.
+- `image_name` (string) – The element's image filename.
+- `z-index` (int) – The layer level. Determines the drawing order, where elements with a higher value are drawn on top.
+- `scale` (float, optional) – The scale of the element. A value of 1.0 corresponds to a scale of 100%. The default is 100%.
+- `rotation_angle` (float, optional) – The rotation angle of the element in degrees. The default is 0.
+- `coordinates` (list) – Element position coordinates relative to the video dimensions in the format [x, y], where [0.0, 0.0] corresponds to the upper-left corner of the background image, and [1.0, 1.0] corresponds to the lower-right corner. This allows for independent positioning of elements for different video dimensions. Optionally, you can specify coordinates in pixels instead of relative ones.
+- `reflection` (boolean, optional) – Flag indicating whether the element is horizontally mirrored. By default, no reflection is displayed.
+- `opacity` (float, optional) – Element opacity. The value ranges from 0 to 1. By default, the element is fully opaque, which corresponds to a value of 1.
+- `motion` (object, optional) – An object describing the element's movement animation. If this parameter is omitted, the motion is not implemented. This will be described in more detail later.
+- `effect` (object, optional) – An array of objects describing the effects applied to the element (appearance, disappearance, etc.). If this parameter is omitted, the effects are not implemented. This will be described in more detail later.
 
-Динамика элементов описывается в объекте motion, объекты которого имеют свойства:
+The dynamics of elements are described in the `motion` object, whose objects have the following properties:
 
-- motion_type (string) – Тип движения. При отсутствии движения может быть указан как "none".
-- starting_time (float, optional) – Время начала движения относительно начала сцены, сек. По умолчанию принимается значение 0.0 – начало сцены.
-- motion_time (float, optional) – Длительность движения, сек. При отсутствии указания параметра движение происходит до конца сцены.
-- start (array, optional) – Координаты начала движения. Обычно не указываются, так как по умолчанию движения начинается от координат позиционирования элемента, которые являются параметром, обязательным для указания.
-- params (object) – Параметры движения. Структура зависит от необходимого типа движения. Для реализации вращения вокруг центра объекта необходим параметр angle_speed: вектор угловой скорости omega, измеряемый в градусах в секунду. Для равноускоренного линейного движения – параметр speed: вектор линейной скорости [vx, vy] в пикселях в секунду. Для движения с ускорением (параболическая траектория) – параметр speed может быть опущен, а может быть скомбинирован с параметром acceleration, представляющий вектор ускорения [ax, ay]. Возможно комбинирование всех трех параметров, тогда объект будет двигаться по параболической траектории с вращением вокруг центра. Возможно указание параметра stop, содержащего координаты окончания движения. В таком случае движение автоматически считается линейным равноускоренным, и компоненты скорости рассчитываются как частное смещение по соответствующей оси и времени движения.
+- `motion_type` (string) – Motion type. If there is no motion, it can be specified as "none".
+- `starting_time` (float, optional) – The start time of the motion relative to the scene start, in seconds. The default value is 0.0, which represents the start of the scene.
+- `motion_time` (float, optional) – The duration of the motion, in seconds. If this parameter is omitted, the motion continues until the end of the scene.
+- `start` (list, optional) – The coordinates of the start of the motion. These are usually not specified, as by default, the motion starts from the element's positioning coordinates, which are a required parameter.
+- `params` (object) – Motion parameters. The structure depends on the desired type of motion. To implement rotation around the object's center, the `angle_speed` parameter is required: the angular velocity vector omega, measured in degrees per second. For uniformly accelerated linear motion, the `speed` parameter is the linear velocity vector [vx, vy] in pixels per second. For accelerated motion (parabolic trajectory), the `speed` parameter can be omitted or combined with the `acceleration` parameter, which represents the acceleration vector [ax, ay]. A combination of all three parameters is possible, in which case the object will move along a parabolic trajectory with rotation around the center. The `stop` parameter can be specified, containing the coordinates of the end of the motion. In this case, the motion is automatically considered uniformly accelerated linear, and the velocity components are calculated as the quotient of the displacement along the corresponding axis and the time of the motion.
 
-Эффекты элемента описаны в массиве effect. Эффекты накладываются на изображение объекта в порядке их следования в массиве. Каждый эффект имеет свойства:
+The element's effects are described in the `effect` array. Effects are applied to the object's image in the order they appear in the array. Each effect has the following properties:
 
-- effect_type (string) – Тип эффекта. Один из вариантов: "appearance", "disappearance", "none", соответствующих плавному появлению и плавному исчезновению изображения объекта в изображении сцены. При значении, равном "none", эффект не накладывается.
-- effect_appearance_time (float, optional) – Время начала эффекта относительно начала сцены в секундах. По умолчанию начинается с 0.0.
-- effect_duration (float, optional) – Длительность эффекта в секундах. По умолчанию равен 0.5 секунды.
+- `effect_type` (string) – Effect type. One of the following options: `"appearance"`, `"disappearance"`, `"none"`, corresponding to the fade-in and fade-out of an object in the scene image. If set to "none", the effect is not applied.
+- `effect_appearance_time` (float, optional) – Effect start time, in seconds, relative to the scene start. By default, it starts at 0.0.
+- `effect_duration` (float, optional) – Effect duration, in seconds. By default, it is 0.5 seconds.
 
-Общие эффекты сцены массива scene_effect применяются ко всему кадру, в порядке их следования в массиве. Поле scene_effect является свойством объекта scene. Примером эффекта сцены является плавное затемнение с указанием цвета и параметрами времени.
+The general scene effects in the `scene_effect` array are applied to the entire frame, in the order they appear in the array. The `scene_effect` field is a property of the `scene` object. An example of a scene effect is a fade-out with specified color and timing parameters.
 
-Параметры эффекта сцены аналогичны параметрам эффектов элемента (effect_type, effect_appearance_time, effect_duration), за исключение необходимости наличия параметра fade_color (array) – цвета затухания или появления в формате [R, G, B]. Параметр effect_type должен иметь одно из значений: "scene_fade_in", "scene_fade_out", "scene_flash". При указании "scene_fade_in" возможно также добавление поля in_the_op (bool) со значением true, сигнализирующее о необходимости начинать сцену с высветления из заданного цвета. При указании "scene_fade_out" возможно добавление поля in_the_end (bool) со значением true, сигнализирующее о необходимости заканчивать сцену затемнением в заданный цвет. При указании scene_flash (bool) со значением true, эффект происходит в середине сцены и выглядит как вспышка, которая является последовательной комбинацией эффекта затемнения в выбранный цвет и высветления из него.
+The scene effect parameters are similar to the element effect parameters (`effect_type`, `effect_appearance_time`, `effect_duration`), except that they require the `fade_color` parameter (list) – the fade-in or fade-out color in the [R, G, B] format. The `effect_type` parameter must have one of the values ​​`"scene_fade_in"`, `"scene_fade_out"`, `"scene_flash"`. When specifying `"scene_fade_in"`, it is possible to also add the `in_the_op` (bool) field with the value True, which signals the need to begin the scene with a lightening from the specified color. When specifying `"scene_fade_out"`, it is possible to add the `in_the_end` (bool) field with the value True, which signals the need to end the scene with a darkening to the specified color. When specifying `"scene_flash"` (bool) with a value of True, the effect occurs in the middle of the scene and appears as a flash, which is a sequential combination of a darkening effect to the selected color and lightening from it.
 
-## Источники
+### Example of an object description in JSON format and its interpretation in a scene
 
-- Реализация алгоритма удаления фона на изображении основана на статье:
-  [Простой фильтр для автоматического удаления фона с изображений] ([ArXen42])
-  https://habr.com/ru/articles/353890/
+![Example](sources/_demo/scenario_interpretation_ex.png)
+
+## Sources
+
+- The implementation of the background removal algorithm is based on the article:
+  [Простой фильтр для автоматического удаления фона с изображений](https://habr.com/ru/articles/353890/) by [ArXen42](https://habr.com/ru/users/ArXen42/).

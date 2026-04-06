@@ -115,7 +115,7 @@ def processScenarioData(
                     if need_objects_preparation:
                         prepared_object_image = prepareObjectImage(object_image_path,
                                         threshold_flood=40,
-                                        need_castom_Sobel=False,
+                                        need_castom_sobel=False,
                                         need_save=save_prepared,
                                         output_path=prepared_object_image_path)
                     else:

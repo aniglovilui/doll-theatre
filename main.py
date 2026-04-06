@@ -1,7 +1,7 @@
 from scenario_processing import loadJSON, processScenarioData
 
 
-# need make paths with os.join
+
 if __name__ == "__main__":
     scenario_file_name = input("Input scenario filename without extension: ")
     """
