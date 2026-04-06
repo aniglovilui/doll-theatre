@@ -20,6 +20,10 @@ List of automated actions:
 
 For research purposes, a custom function was also implemented that calculates a gradient based on the Sobel operator with 3x3 kernels.
 
+To demonstrate the capabilities of the program, a cartoon was created (the plot and script are original, the images used were drawn by me in Procreate).
+
+https://github.com/user-attachments/assets/e9df2880-2f0e-4584-ada1-aa6796b05d79
+
 ## Installation
 
 ```bash
